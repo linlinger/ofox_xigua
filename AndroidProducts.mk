@@ -15,4 +15,4 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/ofox_salami.mk
+    $(LOCAL_DIR)/ofox_xigua.mk

@@ -1,0 +1,6 @@
+on property:init.svc.recovery=running
+    start touchfix
+
+service touchfix /system/bin/sh /system/etc/touchfix.sh
+    oneshot
+    seclabel u:r:recovery:s0

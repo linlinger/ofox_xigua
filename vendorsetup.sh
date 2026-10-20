@@ -1,14 +1,14 @@
 export TARGET_ARCH="arm64-v8a"
 
 # Some about us
-export OF_MAINTAINER=Wishmasterflo
+export OF_MAINTAINER=linlinger
 
 # Build environment stuffs
-export FOX_BUILD_DEVICE="OnePlus11"
+export FOX_BUILD_DEVICE="OnePlusAce2Pro"
 export ALLOW_MISSING_DEPENDENCIES=true
 export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
-export TARGET_DEVICE_ALT="salami, Salami, OnePlus11, OnePlus 11, OP591BL1, OP594DL1"
-export FOX_TARGET_DEVICES="salami, Salami, OnePlus11, OnePlus 11, OP591BL1, OP594DL1"
+export TARGET_DEVICE_ALT="xigua, Xigua, PJA110, OnePlusAce2Pro, OnePlus Ace 2 Pro"
+export FOX_TARGET_DEVICES="xigua, Xigua, PJA110, OnePlusAce2Pro, OnePlus Ace 2 Pro"
 export BUILD_USERNAME="nobody"
 export BUILD_HOSTNAME="android-build"
 
@@ -26,7 +26,7 @@ export OF_STATUS_INDENT_LEFT=48
 export OF_STATUS_INDENT_RIGHT=48
 export OF_ALLOW_DISABLE_NAVBAR=0
 export OF_CLOCK_POS=0
-export OF_SCREEN_H=2400
+export OF_SCREEN_H=2772
 export OF_STATUS_H=120
 
 # Kernelsu/next addon

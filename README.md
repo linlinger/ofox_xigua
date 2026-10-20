@@ -1,8 +1,24 @@
 <img src="https://github.com/Sanju0910/Sanju0910/blob/main/images/of_logo.png" width=100 height=100 align="left" />  
 <img src="https://github.com/Sanju0910/Sanju0910/blob/main/images/oneplus_logo.png" align="right"/>
 
-## OrangeFox Recovery Project Oneplus 11
-## Changelog
+## OrangeFox Recovery Project - OnePlus Ace 2 Pro (xigua / PJA110)
+
+Adapted from [Wishmasterflo/ofox_salami](https://github.com/Wishmasterflo/ofox_salami) (OnePlus 11, same SM8550 platform).
+
+### xigua adaptation notes
+ - `TW_MAX_BRIGHTNESS` 550 -> **4095** (panel0-backlight real max; 550 capped screen at ~13% brightness)
+ - `OF_SCREEN_H` -> 2772 (xigua panel is 1240x2772)
+ - Touch race fix: synaptics_tcm registers `/dev/input/event8` *after* recovery starts
+   (`on boot` vs `twrp.modules.loaded` property chain), and minuitwrp's mtime rescan
+   does not fire on devtmpfs. Added `system/etc/init/touchfix.rc` + `system/etc/touchfix.sh`:
+   if touch is up but recovery has no event fd open, restart recovery (init respawns it,
+   ev_init then scans the complete device list). Verified live on device.
+ - `variant-script.sh` simplified: unconditional PJA110 props (single-variant device)
+ - `twrp.dependencies` fixed to point at the real common tree:
+   [nebrassy/device_oneplus_sm85xx-common-TWRP](https://github.com/nebrassy/device_oneplus_sm85xx-common-TWRP) (android-12.1)
+ - `TARGET_OTA_ASSERT_DEVICE := xigua` restored
+
+## Original OnePlus 11 changelog
 
 # 07-May-2026 R12.0 V11
  - New Orangefox R12.0 with new UI look
