@@ -108,8 +108,15 @@ AERA_EXTRA_LANGUAGES := true
 AERA_LOAD_VENDOR_MODULES := "msm_ext_display.ko sync_fence.ko msm_hw_fence.ko hdcp_qseecom_dlkm.ko msm_drm.ko msm_kgsl.ko goodix_ts.ko atmel_mxt_ts.ko"
 AERA_LOAD_VENDOR_MODULES_EXCLUDE_GKI := true
 
+# NOTE: AERA_LOAD_VENDOR_MODULES *overwrites* TW_LOAD_VENDOR_MODULES via
+# aera-map-config (aera_config.mk:9), so the sm85xx-common list is lost when
+# this is defined. Merge those modules back in here, otherwise qcom-hv-haptics
+# (FF vibration), charger and touch bridge modules are never requested.
+# Keep this UNQUOTED - embedded quotes would break the -D macro expansion.
+SM85XX_BASE_MODULES := adsp_loader_dlkm.ko rproc_qcom_common.ko q6_dlkm.ko qcom_q6v5.ko qcom_q6v5_pas.ko qcom_esoc.ko qcom_sysmon.ko qcom-hv-haptics.ko haptic_feedback.ko oplus_chg.ko oplus_bsp_tp_custom.ko oplus_bsp_tp_comon.ko oplus_bsp_tp_notify.ko oplus_bsp_tp_tcm_oncell.ko oplus_bsp_tp_tcm_S3910.ko oplus_bsp_tp_syna_comnon.ko oplus_bsp_tp_gt9966.ko oplus_bsp_tp_gt9916.ko oplus_bsp_tp_goodix_comnon.ko
+
 # WLAN: load CNSS/kiwi stack after the display modules.
-AERA_LOAD_VENDOR_MODULES := "$(subst ",,$(AERA_LOAD_VENDOR_MODULES)) smem-mailbox.ko cnss_prealloc.ko cnss_utils.ko cnss_plat_ipc_qmi_svc.ko cnss_nl.ko wlan_firmware_service.ko cnss2.ko rfkill.ko btpower.ko cfg80211.ko qca_cld3_kiwi_v2.ko"
+AERA_LOAD_VENDOR_MODULES := "$(subst ",,$(AERA_LOAD_VENDOR_MODULES)) $(SM85XX_BASE_MODULES) smem-mailbox.ko cnss_prealloc.ko cnss_utils.ko cnss_plat_ipc_qmi_svc.ko cnss_nl.ko wlan_firmware_service.ko cnss2.ko rfkill.ko btpower.ko cfg80211.ko qca_cld3_kiwi_v2.ko"
 AERA_POST_DECRYPT_MODULES := "aera_post_decrypt_stage_only.ko"
 AERA_USE_SERIALNO_PROPERTY_FOR_DEVICE_ID := true
 AERA_USE_TOOLBOX := true
