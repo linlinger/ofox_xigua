@@ -1,0 +1,6 @@
+on property:init.svc.recovery=running
+    start wlanfix
+
+service wlanfix /system/bin/sh /system/etc/wlanfix.sh
+    oneshot
+    seclabel u:r:recovery:s0
