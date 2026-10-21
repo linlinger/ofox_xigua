@@ -58,11 +58,12 @@ AERA_STATUS_ICONS_ALIGN := center
 # otherwise aera_backend.cpp references uncompiled AeraSecrets symbols
 AERA_MAINTAINER := AviumUI
 # AERA_SCREEN_H is the theme's 1080-wide REFERENCE-space height (converted
-# x4/3 to the 1440-wide logical space at compile time). Uniform scale would be
-# 2772 * 1080/1240 = 2414, but the user prefers the TWRP-like vertically
-# stretched look (TWRP scales its 1080x1920 theme anisotropically: X 1.148x,
-# Y 1.371x = +19% vertical). Mimic it: 2414 * 1.1939 ~ 2882.
-AERA_SCREEN_H := 2882
+# x4/3 to the 1440-wide logical space at compile time). Bigger value = taller
+# canvas = vertically SQUASHED UI. To mimic the TWRP look (its 1080x1920 theme
+# scaled X 1.148x / Y 1.371x = +19% vertical stretch): need Y-scale
+# 0.8611*1.194 = 1.028 -> canvas 2772/1.028 = 2696 -> 2696*3/4 = 2022.
+# (Matches TWRP's effective base: 2772/1.370833 = 2022.)
+AERA_SCREEN_H := 2022
 AERA_STATUS_H := 132
 AERA_HIDE_NOTCH := 1
 AERA_STATUS_INDENT_LEFT := 90
